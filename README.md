@@ -1,16 +1,35 @@
-# University-Website
+# University document processing demo
 
-Static university page prototype.
+![Desktop preview](docs/preview.jpg)
 
-**Status:** Experimental / portfolio project. Not production-ready.
+A Persian browser-based document workflow for previewing PDFs/images, extracting text with OCR, editing student metadata, applying signature/stamp images, generating QR codes and exporting documents.
 
-## Getting started
-Open `index.html` in a browser (or use a local static web server).
+## Run locally
 
-## Notes
-Do not use demo authentication, sample data, payment or admin UI as a production service without a security review.
+Requires Python 3 for the optional static server. From this repository folder:
 
-## Portfolio source
-This repository contains the project source for local use and review. GitHub Pages deployment is optional. Some features may require a local development server or external dependencies.
+```bash
+python -m http.server 8000
+```
 
-**Note:** This is a learning / portfolio project, not a production-ready service.
+Open http://localhost:8000. No deployment is required.
+
+## Repository structure
+
+- `index.html` — page structure
+- `styles.css` — responsive styles
+- `app.js` — document, storage and export logic
+- `.github/workflows/quality.yml` — automated checks
+- `docs/` — import provenance and review notes
+
+## Scope and dependencies
+
+This version accepts single-page documents; multi-page PDFs are rejected explicitly. Records use browser localStorage (`universityDB`), not a server database. OCR results need manual review. PDF.js, Tesseract, jsPDF, QRCode and icon resources load from CDNs; the app is not fully offline. Storage failures are reported without advancing the workflow. No official university verification service is connected.
+
+## Validation
+
+Local HTML/CSS asset references and JavaScript syntax are checked during the import. See `docs/VALIDATION.md` for the actual results and limits. CI is defined in `.github/workflows/quality.yml`.
+
+## Source preservation
+
+All original project files were imported in a separate Git commit before changes. `docs/ORIGINAL_FILES.sha256` lists the archive file checksums. Existing images, fonts and notices are retained. No repository-wide license grant has been added.
