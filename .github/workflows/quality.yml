@@ -1,0 +1,9 @@
+name: HTML checks
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse HTML
+        run: python -c "from html.parser import HTMLParser; from pathlib import Path; pages=list(Path('.').rglob('*.html')); assert pages; [HTMLParser().feed(p.read_text(encoding='utf-8')) for p in pages]; print(len(pages))"
